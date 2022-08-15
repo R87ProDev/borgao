@@ -1,2 +1,2 @@
-# borgao
+# Borgão
 Lançador de notas
