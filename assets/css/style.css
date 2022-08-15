@@ -27,11 +27,24 @@
 .btn-success {
   background-color: var(--button-success);
 }
-
+.modal-dialog {
+  max-width: 90%;
+}
 .modal-content {
   background-color: #1f2937;
   color: var(--text-color);
 }
+.modal-header {
+  margin: 0 auto;
+}
+.modal-header h5 {
+  font-size: 32px;
+}
+.modal-header,
+.modal-footer {
+  border: none;
+}
+/* Reset color bootstrap styles END */
 
 p {
   margin: 0;
@@ -43,6 +56,7 @@ body {
 }
 /* HEADER */
 header {
+  width: 100%;
   background-color: var(--background-color-secudary);
 }
 
@@ -83,8 +97,10 @@ main {
   height: 150px;
   font-size: 50px;
 }
-/* .btn-disabled {
-  background-color: var(--button-background-disabled);
-  color: var(--button-text-disabled);
-  border-color: var(--button-background-disabled);
-} */
+
+.btn-confirm-declassify {
+  height: 60px;
+  font-size: 32px;
+  background-color: var(--button-success);
+  color: var(--text-color);
+}
