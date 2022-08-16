@@ -123,6 +123,15 @@ main {
   opacity: 0.9;
   transition: background-color 0.3s linear;
 }
+
+.clean-input-button {
+  color: red;
+  width: 45px;
+  position: relative;
+  top: -80px;
+  left: 250px;
+  cursor: pointer;
+}
 /* MAIN END */
 
 /* DATA NOTE */
@@ -146,8 +155,11 @@ main {
   font-size: 50px;
   text-align: center;
   border-radius: 8px;
-  /*   background-color: var(--button-primary);
-  color: var(--text-color); */
+}
+.button-number:disabled {
+  background-color: var(--button-background-disabled);
+  color: var(--button-text-disabled);
+  border: none;
 }
 
 #btn-save {

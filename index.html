@@ -42,68 +42,70 @@
             <div class="d-flex gap-4">
                 <div class="mb-3 w-100">
                     <label for="animal" class="form-label fw-semibold fs-4">Animal</label>
-                    <input type="email" class="form-control input-data" id="animal" placeholder="Nota">
+                    <input type="email" class="form-control input-data fw-bolder" id="animal" placeholder="Nota">
+                    <span onclick="cleanInput('animal')">
+                      <img src="./assets/images/x.svg" class="clean-input-button  clear-animal"alt="">
+                    </span>
                 </div>
                 <div class="mb-3 w-100">
                     <label for="competitor" class="form-label fw-semibold fs-4">Competidor</label>
-                    <input type="email" class="form-control input-data" id="competitor" placeholder="Nota">
+                    <input type="email" class="form-control input-data fw-bolder" id="competitor" placeholder="Nota">
+                    <span onclick="cleanInput('competitor')">
+                        <img src="./assets/images/x.svg" class="clean-input-button  clear-competitor" alt="">
+                      </span>
                 </div>
             </div>
 
             <div class="data-number mt-3">
                 <div class="row gap-1">
                     <div class="col">
-                        <button class="button-number fw-bolder btn-primary">1</button>
+                        <button id="number-1" class="button-number fw-bolder btn-primary" onclick="dataNumber('1')">1</button>
                     </div>
                     <div class="col">
-                        <button class="button-number fw-bolder btn-primary">2</button>
+                        <button id="number-2" class="button-number fw-bolder btn-primary" onclick="dataNumber('2')">2</button>
                     </div>
                     <div class="col">
-                        <button class="button-number fw-bolder btn-primary">3</button>
-                    </div>
-                </div>
-                <div class="row gap-1 mt-3">
-                    <div class="col">
-                        <button class="button-number fw-bolder btn-primary">4</button>
-                    </div>
-                    <div class="col">
-                        <button class="button-number fw-bolder btn-primary">5</button>
-                    </div>
-                    <div class="col">
-                        <button class="button-number fw-bolder btn-primary">6</button>
+                        <button id="number-3" class="button-number fw-bolder btn-primary" onclick="dataNumber('3')">3</button>
                     </div>
                 </div>
                 <div class="row gap-1 mt-3">
                     <div class="col">
-                        <button class="button-number fw-bolder btn-primary">7</button>
+                        <button id="number-4" class="button-number fw-bolder btn-primary" onclick="dataNumber('4')">4</button>
                     </div>
                     <div class="col">
-                        <button class="button-number fw-bolder btn-primary">8</button>
+                        <button id="number-5" class="button-number fw-bolder btn-primary" onclick="dataNumber('5')">5</button>
                     </div>
                     <div class="col">
-                        <button class="button-number fw-bolder btn-primary">9</button>
-                    </div>
-                </div>
-                <div class="row gap-1 mt-3">
-                    <div class="col">
-                        <!-- <button class="button-number">7</button> -->
-                    </div>
-                    <div class="col">
-                        <button class="button-number fw-bolder btn-primary">0</button>
-                    </div>
-                    <div class="col">
-                        <!--  <button class="button-number">9</button> -->
+                        <button id="number-6" class="button-number fw-bolder btn-primary" onclick="dataNumber('6')">6</button>
                     </div>
                 </div>
                 <div class="row gap-1 mt-3">
                     <div class="col">
-                        <button class="button-number btn-warning fw-bolder">.25</button>
+                        <button id="number-7" class="button-number fw-bolder btn-primary" onclick="dataNumber('7')">7</button>
                     </div>
                     <div class="col">
-                        <button class="button-number btn-warning fw-bolder">.50</button>
+                        <button id="number-8" class="button-number fw-bolder btn-primary" onclick="dataNumber('8')">8</button>
                     </div>
                     <div class="col">
-                        <button class="button-number btn-warning fw-bolder">.75</button>
+                        <button id="number-9" class="button-number fw-bolder btn-primary" onclick="dataNumber('9')">9</button>
+                    </div>
+                </div>
+                <div class="row gap-1 mt-3">
+                    <div class="col"></div>
+                    <div class="col">
+                        <button id="number-0" class="button-number fw-bolder btn-primary" onclick="dataNumber('0')">0</button>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row gap-1 mt-3">
+                    <div class="col">
+                        <button id="number-25" class="button-number btn-warning fw-bolder" onclick="dataNumber('25')">.25</button>
+                    </div>
+                    <div class="col">
+                        <button id="number-50" class="button-number btn-warning fw-bolder" onclick="dataNumber('50')">.50</button>
+                    </div>
+                    <div class="col">
+                        <button id="number-75" class="button-number btn-warning fw-bolder" onclick="dataNumber('75')">.75</button>
                     </div>
                 </div>
                 <button id="btn-save" class="btn btn-success fs-2 fw-bolder w-100 mt-3">ENVIAR</button>
