@@ -29,9 +29,29 @@
         <p class="fs-1 fw-semibold">Animal:</p>
         <span class="fs-2">WhatsApp / Zezin do norte</span>
 
-        <div class="clock-template mt-5">
+        <div class="clock-template mt-5 d-none">
             <button class="btn btn-danger fw-bolder btn-clock">CLOCK</button> <br>
             <button class="btn fw-bolder btn-warning btn-declassify mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">DESCLASSIFICAR</button>
+        </div>
+
+        <div class="data-note-template mt-4">
+            <div class="d-flex gap-4">
+                <div class="mb-3 w-100">
+                    <label for="animal" class="form-label">Animal</label>
+                    <input type="email" class="form-control input-data" id="animal" placeholder="Nota 1">
+                </div>
+                <div class="mb-3 w-100">
+                    <label for="competitor" class="form-label">Competidor</label>
+                    <input type="email" class="form-control input-data" id="competitor" placeholder="Nota 2">
+                </div>
+            </div>
+
+            <div class="data-number">
+                <span class="fs-2">1</span>
+                <span class="fs-2">2</span>
+
+
+            </div>
         </div>
     </main>
 
@@ -45,16 +65,17 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-floating">
-                        <select class="form-select" id="floatingSelect">
-                      <option selected>Open this select menu</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                    <select class="form-select" id="declassifySelect">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
                     </select>
                     </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn fw-bolder w-100 btn-confirm-declassify">CONFIRMAR</button>
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn fw-bolder w-100 btn-confirm-declassify">CONFIRMAR</button>
                 </div>
             </div>
         </div>

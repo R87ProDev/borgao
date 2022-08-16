@@ -44,6 +44,16 @@
 .modal-footer {
   border: none;
 }
+.form-floating > .form-select {
+  padding-top: 0.5rem;
+  padding-bottom: 0.625rem;
+}
+#declassifySelect {
+  background-color: var(--background-color-primary);
+  color: white;
+  font-size: 32px;
+  border-color: #94a3b8;
+}
 /* Reset color bootstrap styles END */
 
 p {
@@ -103,4 +113,29 @@ main {
   font-size: 32px;
   background-color: var(--button-success);
   color: var(--text-color);
+  border: none;
 }
+
+.btn-confirm-declassify:hover {
+  background-color: var(--button-success);
+  opacity: 0.9;
+  transition: background-color 0.3s linear;
+}
+/* MAIN END */
+
+/* DATA NOTE */
+
+.input-data {
+  height: 120px;
+  font-size: 50px;
+  text-align: center;
+  background-color: #334155;
+  color: var(--text-color);
+}
+.input-data:focus {
+  background-color: #334155;
+  color: var(--text-color);
+  outline: none;
+}
+
+/* DATA NOTE END*/
