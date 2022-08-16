@@ -20,43 +20,46 @@
         <div class="d-flex align-items-center justify-content-between">
             <img src="./assets/images/data_logo.png" width="30px" alt="">
             <span class="d-flex align-items-center"> 
-              <div class="circle"></div> 
-             <p class="fs-5 fw-semibold status">Conectado</p> 
+                <div class="circle"></div> 
+                <p class="fs-5 fw-semibold status">Desconectado</p> 
             </span>
         </div>
-        <div class="fs-4 fw-semibold judge">Juiz 2</div>
+        <div class="fs-4 fw-semibold judge"></div>
     </header>
 
     <main>
         <p class="fs-1 fw-semibold">Competidor:</p>
-        <span class="fs-2">Ademir Candido da Silva</span>
+        <span class="fs-2" id="nameCompetitor"></span>
         <p class="fs-1 fw-semibold">Animal:</p>
-        <span class="fs-2">WhatsApp / Zezin do norte</span>
+        <span class="fs-2">
+            <span id="nameAnimal"></span>
+        <span id="nameContractor"></span>
+        </span>
 
-        <div class="clock-template mt-5 d-none">
+        <div class="clock-template mt-5">
             <button class="btn btn-danger fw-bolder btn-clock">CLOCK</button> <br>
             <button class="btn fw-bolder btn-warning btn-declassify mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">DESCLASSIFICAR</button>
         </div>
 
-        <div class="data-note-template mt-4">
+        <div class="data-note-template mt-4 ">
             <div class="d-flex gap-4">
-                <div class="mb-3 w-100">
+                <div class="mb-3 w-100" style="height:120px;">
                     <label for="animal" class="form-label fw-semibold fs-4">Animal</label>
-                    <input type="email" class="form-control input-data fw-bolder" id="animal" placeholder="Nota">
+                    <input type="text" class="form-control input-data fw-bolder" id="animal" placeholder="Nota">
                     <span onclick="cleanInput('animal')">
-                      <img src="./assets/images/x.svg" class="clean-input-button  clear-animal"alt="">
+                      <img src="./assets/images/x.svg" class="clean-input-button clear-animal"alt="">
                     </span>
                 </div>
-                <div class="mb-3 w-100">
+                <div class="mb-3 w-100" style="height:120px;">
                     <label for="competitor" class="form-label fw-semibold fs-4">Competidor</label>
-                    <input type="email" class="form-control input-data fw-bolder" id="competitor" placeholder="Nota">
+                    <input disabled type="text" class="form-control input-data fw-bolder" id="competitor" placeholder="Nota">
                     <span onclick="cleanInput('competitor')">
                         <img src="./assets/images/x.svg" class="clean-input-button  clear-competitor" alt="">
-                      </span>
+                    </span>
                 </div>
             </div>
 
-            <div class="data-number mt-3">
+            <div class="data-number mt-5">
                 <div class="row gap-1">
                     <div class="col">
                         <button id="number-1" class="button-number fw-bolder btn-primary" onclick="dataNumber('1')">1</button>
@@ -108,8 +111,9 @@
                         <button id="number-75" class="button-number btn-warning fw-bolder" onclick="dataNumber('75')">.75</button>
                     </div>
                 </div>
-                <button id="btn-save" class="btn btn-success fs-2 fw-bolder w-100 mt-3">ENVIAR</button>
+
             </div>
+            <button id="btn-save" class="btn btn-success fs-2 fw-bolder w-100 mt-3">ENVIAR</button>
         </div>
     </main>
 
@@ -119,7 +123,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Qual o motivo do desclassificação ?</h5>
-                    <!--  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
                 <div class="modal-body">
                     <div class="form-floating">
