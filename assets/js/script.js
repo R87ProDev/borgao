@@ -218,6 +218,40 @@ $(document).ready(function() {
             socket.send(JSON.stringify(sendData));
         }, 100);
     });
+
+    $("#btn-save").click(function() {
+        /* Duas notas cada juiz */
+        if (scores == 2) {
+            var sendData = {
+                type: "score",
+                numbers: scores,
+                judgeId: judgeID,
+                rideId: rideID,
+                date: Date.now(),
+                scoreAnimal: $('#animal').val(),
+                scoreRider: $('#competitor').val(),
+            };
+            /* Uma nota cada juiz */
+        } else {
+            var sendData = {
+                type: "score",
+                numbers: scores,
+                judgeId: judgeID,
+                rideId: rideID,
+                date: Date.now(),
+                score: $('#score-unique').val(),
+            };
+        }
+
+        setTimeout(function() {
+            socket.send(JSON.stringify(sendData));
+        }, 100);
+
+        $('#score1').val(null).attr('disabled', 'disabled');
+        $('#score2').val(null).attr('disabled', 'disabled');
+        $('#score-unique').val(null).attr('disabled', 'disabled');
+        $('#btnSend').attr('disabled', 'disabled');
+    })
 })
 
 const stateNote = (stateType = localStorage.getItem("typeNote")) => {
@@ -415,38 +449,4 @@ $("#animal, #competitor").focus(function() {
 
 $("#animal, #competitor").focusout(function() {
     $(`.clear-competitor`).hide()
-})
-
-$("#btn-save").click(function() {
-    /* Duas notas cada juiz */
-    if (scores == 2) {
-        var sendData = {
-            type: "score",
-            numbers: scores,
-            judgeId: judgeID,
-            rideId: rideID,
-            date: Date.now(),
-            scoreAnimal: $('#score1').val(),
-            scoreRider: $('#score2').val(),
-        };
-        /* Uma nota cada juiz */
-    } else {
-        var sendData = {
-            type: "score",
-            numbers: scores,
-            judgeId: judgeID,
-            rideId: rideID,
-            date: Date.now(),
-            score: $('#score-unique').val(),
-        };
-    }
-
-    setTimeout(function() {
-        socket.send(JSON.stringify(sendData));
-    }, 100);
-
-    $('#score1').val(null).attr('disabled', 'disabled');
-    $('#score2').val(null).attr('disabled', 'disabled');
-    $('#score-unique').val(null).attr('disabled', 'disabled');
-    $('#btnSend').attr('disabled', 'disabled');
 })
