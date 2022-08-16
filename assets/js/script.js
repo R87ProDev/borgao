@@ -6,7 +6,4 @@ $(".btn-clock").click(function() {
 
 
 
-$('#animal').keypress(function(event) {
-    event.preventDefault();
-    return false;
-});
+$('#animal').attr('readonly', 'readonly');
