@@ -36,21 +36,21 @@
         <span id="nameContractor"></span>
         </span>
 
-        <div class="clock-template mt-5">
+        <div class="clock-template mt-5 d-none">
             <button class="btn btn-danger fw-bolder btn-clock">CLOCK</button> <br>
             <button class="btn fw-bolder btn-warning btn-declassify mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">DESCLASSIFICAR</button>
         </div>
 
         <div class="data-note-template mt-4 ">
             <div class="d-flex gap-4">
-                <div class="mb-3 w-100" style="height:120px;">
+                <div class="mb-3 w-100" style="height:120px;position: relative;">
                     <label for="animal" class="form-label fw-semibold fs-4">Animal</label>
                     <input type="text" class="form-control input-data fw-bolder" id="animal" placeholder="Nota">
-                    <span onclick="cleanInput('animal')">
+                    <div onclick="cleanInput('animal')">
                       <img src="./assets/images/x.svg" class="clean-input-button clear-animal"alt="">
-                    </span>
+                    </div>
                 </div>
-                <div class="mb-3 w-100" style="height:120px;">
+                <div class="mb-3 w-100" style="height:120px;position: relative;">
                     <label for="competitor" class="form-label fw-semibold fs-4">Competidor</label>
                     <input disabled type="text" class="form-control input-data fw-bolder" id="competitor" placeholder="Nota">
                     <span onclick="cleanInput('competitor')">

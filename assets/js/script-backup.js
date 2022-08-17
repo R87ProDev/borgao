@@ -2,7 +2,6 @@
 $('.input-data').attr('readonly', 'readonly');
 let buckoff = 0;
 $(document).ready(function() {
-    stateNote()
     $(".clear-animal").hide()
     $(".clear-competitor").hide()
     localStorage.setItem("typeNote", "animal")
@@ -32,33 +31,40 @@ $(document).ready(function() {
         }
         socket.onmessage = function(msg) {
             console.log(msg)
+            //Juiz ID
             if (msg.data.includes("[judge-id]")) {
                 judgeID = msg.data.replace('[judge-id]', '');
             }
+            // Competidor ID
             if (msg.data.includes("[ride-id]")) {
                 rideID = msg.data.replace('[ride-id]', '');
             }
+            // Nome do Juiz
             if (msg.data.includes("[judge-name]")) {
                 $('.judge').text(msg.data.replace('[judge-name]', ''));
             }
+            // Nome do Competidor
             if (msg.data.includes("[rider]")) {
                 $('#nameCompetitor').text(msg.data.replace('[rider]', ''));
             }
+            // Nome do Animal
             if (msg.data.includes("[animal]")) {
                 $('#nameAnimal').text(msg.data.replace('[animal]', '') + " / ");
             }
+            
             if (msg.data.includes("[contractor]")) {
                 $('#nameContractor').text(msg.data.replace('[contractor]', ''));
             }
             /* BLoquear tudo = quando completa a montaria  */
             if (msg.data.includes("[completed]")) {
-                disabledButtons()
+                disabledButtons();
                 $("#btn-save").attr("disabled", true);
                 $("#animal").attr("disabled", true);
                 $("#competitor").attr("disabled", true);
                 $('.data-note-template').show();
                 $('.clock-template').hide();
             }
+            // Tempos de 30s
             if (msg.data.includes("[time]")) {
                 time = msg.data.replace('[time]', '')
                 $('.btn-clock').text(time);
@@ -66,23 +72,12 @@ $(document).ready(function() {
                     $('.btn-clock').text("CLOCK");
                 }
             }
+            // Tipo de Juiz
             if (msg.data.includes('[judge-classification]')) {
                 judgeClassification = msg.data.replace('[judge-classification]', '');
 
                 if (judgeClassification == 'Arena') {
-                    $("#number-1").attr("disabled", true);
-                    $("#number-2").attr("disabled", true);
-                    $("#number-3").attr("disabled", true);
-                    $("#number-4").attr("disabled", true);
-                    $("#number-5").attr("disabled", true);
-                    $("#number-6").attr("disabled", true);
-                    $("#number-7").attr("disabled", true);
-                    $("#number-8").attr("disabled", true);
-                    $("#number-9").attr("disabled", true);
-                    $("#number-0").attr("disabled", true);
-                    $("#number-25").attr("disabled", true);
-                    $("#number-50").attr("disabled", true);
-                    $("#number-75").attr("disabled", true);
+                    disabledButtons();
                     $("#btn-save").attr("disabled", true);
                     $("#animal").attr("disabled", true);
                     $("#competitor").attr("disabled", true);
@@ -122,7 +117,19 @@ $(document).ready(function() {
             }
             /*  Quando a montaria acaba / Habilita o quadro de nota  */
             if (msg.data.includes("[finished]")) {
-                disabledButtons()
+                $("#number-1").attr("disabled", false);
+                $("#number-2").attr("disabled", false);
+                $("#number-3").attr("disabled", false);
+                $("#number-4").attr("disabled", true);
+                $("#number-5").attr("disabled", true);
+                $("#number-6").attr("disabled", true);
+                $("#number-7").attr("disabled", true);
+                $("#number-8").attr("disabled", true);
+                $("#number-9").attr("disabled", true);
+                $("#number-0").attr("disabled", true);
+                $("#number-25").attr("disabled", true);
+                $("#number-50").attr("disabled", true);
+                $("#number-75").attr("disabled", true);
                 $("#btn-save").attr("disabled", false);
 
                 $("#animal").attr("disabled", false);
@@ -151,13 +158,15 @@ $(document).ready(function() {
             $('.circle').css('background-color', '#dc2626');
             $('.status').text("Desconectado").css('color', '#dc2626');
 
-            disabledButtons()
-            $("#animal").attr("disabled", true);
-            $("#competitor").attr("disabled", true);
+            // disabledButtons();
+            // $("#animal").attr("disabled", true);
+            // $("#competitor").attr("disabled", true);
+            $('.data-note-template').show();
+            $('.clock-template').hide();
 
-            setTimeout(function() {
-                connect();
-            }, 5000);
+            // setTimeout(function() {
+            //     connect();
+            // }, 5000);
         }
 
         socket.onerror = function(msg) {
@@ -195,8 +204,9 @@ $(document).ready(function() {
                 scoreAnimal: $('#animal').val(),
                 scoreRider: $('#competitor').val(),
             };
-            /* Uma nota cada juiz */
+           
         } else {
+             /* Uma nota cada juiz */
             var sendData = {
                 type: "score",
                 numbers: scores,
@@ -218,8 +228,8 @@ $(document).ready(function() {
     })
 })
 
-const stateNote = (stateType = localStorage.getItem("typeNote")) => {
-    /*  let numberLength = $(`#${stateType}`).val().length; */
+/*const stateNote = (stateType = localStorage.getItem("typeNote")) => {
+      let numberLength = $(`#${stateType}`).val().length; */
 
     /* $("#number-3").attr("disabled", true);
     $("#number-4").attr("disabled", true);
@@ -230,13 +240,13 @@ const stateNote = (stateType = localStorage.getItem("typeNote")) => {
     $("#number-9").attr("disabled", true);
     $("#number-25").attr("disabled", true);
     $("#number-50").attr("disabled", true);
-    $("#number-75").attr("disabled", true); */
+    $("#number-75").attr("disabled", true); 
 
-}
+}*/
 
 const dataNumber = (number, noteType = localStorage.getItem("typeNote")) => {
     let numberLength = $(`#${noteType}`).val().length;
-    console.log(number,"ok")
+    console.log(number)
 
     if (numberLength === 0) {
         $(`#${noteType}`).val(number)
@@ -245,11 +255,14 @@ const dataNumber = (number, noteType = localStorage.getItem("typeNote")) => {
         if (number == 0) {
             $(`#${noteType}`).val("00,00")
             $(`.clear-${localStorage.getItem("typeNote")}`).hide()
-            $("#competitor").focus()
-            localStorage.setItem("typeNote", "competitor")
-            $("#competitor").attr("disabled", true);
-            disabledButtons()
-            /*  $("#competitor").attr("disabled", false); */
+
+            if(buckoff != 1) {
+                $("#competitor").focus()
+                localStorage.setItem("typeNote", "competitor")
+            } else {
+                $("#competitor").attr("disabled", true);
+                disabledButtons()
+            }
         }
 
         if ($(`#${noteType}`).val() == 1) {
@@ -278,7 +291,7 @@ const dataNumber = (number, noteType = localStorage.getItem("typeNote")) => {
 
     } else if (numberLength === 1) {
         $(`#${noteType}`).val($(`#${noteType}`).val() + number + ',')
-        console.log("digito segundo numero")
+
         $("#number-1").attr("disabled", true);
         $("#number-2").attr("disabled", true);
         $("#number-3").attr("disabled", true);
@@ -294,9 +307,13 @@ const dataNumber = (number, noteType = localStorage.getItem("typeNote")) => {
         if (number == 0) {
             $(`#${noteType}`).val($(`#${noteType}`).val() + number)
             $(`.clear-${localStorage.getItem("typeNote")}`).hide()
-            $("#competitor").focus()
-            localStorage.setItem("typeNote", "competitor")
-            console.log($(`#${noteType}`).val(), "number")
+            
+            if(buckoff != 1) {
+                $("#competitor").focus()
+                localStorage.setItem("typeNote", "competitor")
+            }
+
+            console.log($(`#${noteType}`).val())
             if ($(`#${noteType}`).val() >= 25) {
                 $("#number-25").attr("disabled", true);
                 $("#number-50").attr("disabled", true);
@@ -334,8 +351,6 @@ const dataNumber = (number, noteType = localStorage.getItem("typeNote")) => {
                 disabledButtons()
             }
 
-            /*    $(".data-number").addClass("d-none") */
-            stateNote()
         } else {
             $(`#${noteType}`).val($(`#${noteType}`).val() + number)
         }
@@ -354,7 +369,7 @@ const dataNumber = (number, noteType = localStorage.getItem("typeNote")) => {
            stateNote()
        } */
 }
-// Limpa o campo de notas
+
 const cleanInput = (typeInput) => {
     let numberLength = $(`#${typeInput}`).val().length;
     $(`#${typeInput}`).val('')
@@ -362,15 +377,7 @@ const cleanInput = (typeInput) => {
         $(`.clear-${localStorage.getItem("typeNote")}`).hide()
         $("#number-1").attr("disabled", false);
         $("#number-2").attr("disabled", false);
-        $("#number-3").attr("disabled", true);
-        $("#number-4").attr("disabled", true);
-        $("#number-5").attr("disabled", true);
-        $("#number-6").attr("disabled", true);
-        $("#number-7").attr("disabled", true);
-        $("#number-8").attr("disabled", true);
-        $("#number-9").attr("disabled", true);
         $("#number-0").attr("disabled", false);
-
         stateNote()
     }
 }
